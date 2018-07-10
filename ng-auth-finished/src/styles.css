@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+body{
+    padding: 20px;
+}
+
+.form-control.ng-touched.ng-invalid{
+    border: 2px solid red;
+}
+
+.text-success{
+    color: green;
+}
+
+.logout:hover{
+    cursor: pointer;
+}
+
+ul li{
+    text-decoration: none;
+    list-style: none;
+    font-size: 25px;
+}
