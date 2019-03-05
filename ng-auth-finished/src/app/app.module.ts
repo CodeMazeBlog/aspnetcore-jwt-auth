@@ -4,8 +4,9 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt'
 
-import { JwtHelper } from 'angular2-jwt'
+import { JwtHelper } from 'angular2-jwt';
 
 import { HomeComponent } from 'app/home/home.component';
 import { LoginComponent } from 'app/login/login.component';
@@ -29,7 +30,7 @@ import { AppComponent } from './app/app.component';
       { path: 'customers', component: CustomersComponent, canActivate: [AuthGuard] },
     ])
   ],
-  providers: [JwtHelper, AuthGuard],
+  providers: [JwtHelper, JwtHelperService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
