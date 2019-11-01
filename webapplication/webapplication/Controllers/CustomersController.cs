@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace webapplication.Controllers
@@ -12,7 +8,6 @@ namespace webapplication.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
-        // GET api/values
         [HttpGet, Authorize(Roles = "Manager")]
         public IEnumerable<string> Get()
         {
