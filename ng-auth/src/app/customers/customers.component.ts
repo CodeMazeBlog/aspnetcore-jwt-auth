@@ -12,7 +12,6 @@ export class CustomersComponent implements OnInit  {
   constructor(private http: HttpClient) { }
  
   ngOnInit() {
-    let token = localStorage.getItem("jwt");
     this.http.get("http://localhost:5000/api/customers", {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
