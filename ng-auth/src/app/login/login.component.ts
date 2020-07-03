@@ -14,13 +14,16 @@ export class LoginComponent {
 
   public login = (form: NgForm) => {
     const credentials = JSON.stringify(form.value);
-    this.http.post("http://localhost:5000/api/auth/login", credentials, {
+    this.http.post("http://localhost:5000/api/auth/login", 
+    credentials, {
       headers: new HttpHeaders({
         "Content-Type": "application/json"
-      })
-    }).subscribe(response => {
+      })          
+    }).subscribe(response => {      
       const token = (<any>response).token;
+      const refreshToken = (<any>response).refreshToken;
       localStorage.setItem("jwt", token);
+      localStorage.setItem("refreshToken", refreshToken);
       this.invalidLogin = false;
       this.router.navigate(["/"]);
     }, err => {

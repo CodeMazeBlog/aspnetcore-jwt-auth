@@ -2,10 +2,13 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using webapplication.Models;
+using webapplication.Services;
 
 namespace webapplication
 {
@@ -21,7 +24,8 @@ namespace webapplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddAuthentication(opt => {
+            services.AddAuthentication(opt =>
+            {
                 opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
@@ -40,16 +44,20 @@ namespace webapplication
                 };
             });
 
-            services.AddCors(options => 
+            services.AddCors(options =>
             {
-                options.AddPolicy("EnableCORS", builder => 
-                { 
+                options.AddPolicy("EnableCORS", builder =>
+                {
                     builder.AllowAnyOrigin()
                     .AllowAnyHeader()
-                    .AllowAnyMethod(); 
-                }); 
+                    .AllowAnyMethod();
+                });
             });
 
+            services.AddDbContext<UserContext>(opts =>
+                opts.UseSqlServer(Configuration["ConnectionString:UserDB"]));
+
+            services.AddTransient<ITokenService, TokenService>();
             services.AddControllers();
         }
 
