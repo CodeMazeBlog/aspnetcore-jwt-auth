@@ -27,6 +27,11 @@ export class AuthGuard implements CanActivate {
   private async tryRefreshingTokens(token: string): Promise<boolean> {
     // Try refreshing tokens using refresh token
     const refreshToken: string = localStorage.getItem("refreshToken");
+
+    if (!token || !refreshToken) {      
+      return false;
+    }
+
     const credentials = JSON.stringify({ accessToken: token, refreshToken: refreshToken });
 
     let isRefreshSuccess: boolean;
