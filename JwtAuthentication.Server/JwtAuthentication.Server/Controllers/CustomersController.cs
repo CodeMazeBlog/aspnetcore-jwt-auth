@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace webapplication.Controllers
+namespace JwtAuthentication.Server.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
